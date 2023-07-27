@@ -1,0 +1,72 @@
+version: '3'
+services:
+  tom_diary:
+    image: lamp_with_smb
+    ports:
+      - 80:80
+      - 445:445
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - hogwarts
+
+  gaunt_ring:
+    image: lamp_with_smb
+    networks:
+      - hogwarts
+      - magic_ministry
+
+  slytherin_locket:
+    image: lamp_with_smb
+    networks:
+      - magic_ministry
+      - gringott
+
+  hufflepuff_cup:
+    image: lamp_with_smb
+    networks:
+      - gringott
+      - requirement_room
+
+  ravenclaw_diadem:
+    image: lamp_with_smb
+    networks:
+      - requirement_room
+      - forbidden_forest
+
+  nagini:
+    image: lamp_with_smb
+    networks:
+      - forbidden_forest
+
+  harry_potter:
+    image: lamp_with_smb
+    networks:
+      - forbidden_forest
+      - elder_wand
+
+  voldemort:
+    image: lamp_with_smb
+    networks:
+      - elder_wand
+
+
+networks:
+  hogwarts:
+    driver: bridge
+
+  magic_ministry:
+    driver: bridge
+
+  gringott:
+    driver: bridge
+
+  requirement_room:
+    driver: bridge
+
+  forbidden_forest:
+    driver: bridge
+
+  elder_wand:
+    driver: bridge
